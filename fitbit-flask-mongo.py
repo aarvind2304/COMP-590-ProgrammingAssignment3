@@ -84,7 +84,7 @@ def getPoseSensors():
         res["timestamp"] = x["timestamp"]   
     return res
   
-@app.route('post/env',methods=["post"])
+@app.route('/post/env',methods=["post"])
 def postEnv():
     #res = request.get_json()
     res = {"temp":0,"humidity":0,"timestamp":0}
