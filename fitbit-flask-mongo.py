@@ -86,8 +86,9 @@ def getPoseSensors():
   
 @app.route('post/env',methods=["post"])
 def postEnv():
-    res = request.get_json()
-    #insert = db.environmental_data.insert_one(res)
+    #res = request.get_json()
+    res = {"temp":0,"humidity":0,"timestamp":0}
+    insert = db.environmental_data.insert_one(res)
     return "Environmental Database Updated"
 
 #@app.route('post/pose',methods=["post"])
