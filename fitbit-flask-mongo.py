@@ -63,7 +63,7 @@ def activity(userDate: str):
 def getEnvSensors():
     latest_value = db.environmental_data.find().sort("timestamp",-1).limit(1)
 
-    res = {"temp":0,"humidity":0,"timestamp":0}
+    res = {"temp":0,"humidity":0,"timestamp": 0  }
     for x in latest_value:
         res["temp"] = x["temp"]
         res["humidity"] = x["humidity"]
