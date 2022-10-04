@@ -84,11 +84,11 @@ def getPoseSensors():
         res["timestamp"] = x["timestamp"]   
     return res
   
-#@app.route('post/env',methods=["post"])
-#def postEnv():
- #   res = request.get_json()
-  #  insert = db.environmental_data.insert_one(res)
-   # return "Environmental Database Updated"
+@app.route('post/env',methods=["post"])
+def postEnv():
+    res = request.get_json()
+    insert = db.environmental_data.insert_one(res)
+    return "Environmental Database Updated"
 
 #@app.route('post/pose',methods=["post"])
 #def postPose():
