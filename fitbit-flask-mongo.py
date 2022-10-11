@@ -4,6 +4,7 @@ import requests, json
 from datetime import date, datetime, timedelta
 from pymongo import MongoClient
 import certifi
+import time
 client =MongoClient("mongodb+srv://ani4231:mongo123@fitbitcluster.3jqr7bo.mongodb.net/?retryWrites=true&w=majority",tlsCAFile = certifi.where())
 db = client["fitbit_db"]
 myheader = {"Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzhSRFQiLCJzdWIiOiJCNEYzNVEiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcm94eSBycHJvIHJudXQgcnNsZSByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjkzNDg4MDQxLCJpYXQiOjE2NjE5NTIwNDF9.uk4UyLwyQeLjnoE6jxKPNCxfkzs0mFTq_09cfuyV74U"}
@@ -87,7 +88,8 @@ def getPoseSensors():
 @app.route('/post/env',methods=["post"])
 def postEnv():
     res = request.get_json()
-    insert = db.environmental_data.insert_one(res)
+    jsonEdit = {"temp":res["temp"], "humidity":res["humidity"], "timestamp":time.time()}
+    insert = db.environmental_data.insert_one(jsonEdit)
     return "ENV updated"
 
 @app.route('/post/pose',methods=["post"])
